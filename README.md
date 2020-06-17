@@ -1,4 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fundavision
+Frontend for fundavision.com. After cloning the project make sure to run `npm i`
+
+# Dev Env Preference
+- Linux (Ubuntu 18.04 or above) / Mac OS (OS X 10.11: El Capitan- 2015 or above)
+- VS Code
+- NVM - Node 10.19.0
+- React Scripts 3.4.1
+- Typescript 
+## Vs Code Plugins to install
+- https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+- https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin
+
+To enable indent on save follow steps explained (here)[https://code.visualstudio.com/docs/getstarted/settings]. My personal preference is save after 3 secs. 
+
+
 
 ## Available Scripts
 
