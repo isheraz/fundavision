@@ -7,12 +7,12 @@ Frontend for fundavision.com. After cloning the project make sure to run `npm i`
 - NVM - Node 10.19.0
 - React Scripts 3.4.1
 - Typescript 
+
 ## Vs Code Plugins to install
 - https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 - https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin
 
 To enable indent on save follow steps explained (here)[https://code.visualstudio.com/docs/getstarted/settings]. My personal preference is save after 3 secs. 
-
 
 
 ## Available Scripts
