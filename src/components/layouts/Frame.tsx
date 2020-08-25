@@ -163,7 +163,16 @@ const styles = (theme: any) =>
         display: 'flex'
       }
     },
-    loginButton: {},
+    loginButton: {
+      marginRight:'20px',
+      borderRadius: '20px',
+      color:"black",
+      border: '1px solid #C0C0C0',
+    
+      '&:hover': {
+        backgroundColor: '#4C33FF',
+      },
+    },
     link: {
       textDecoration: 'none',
       color: theme.palette.text.primary
@@ -178,6 +187,17 @@ const styles = (theme: any) =>
     superBanner: {
       background: theme.palette.secondary.main,
       backgroundColor: theme.palette.secondary[400]
+    },
+    anchor:{
+      textDecoration:'none',
+      paddingRight:'24px',
+      color:'black',
+      fontSize:'15px',
+      fontWeight:'lighter',
+      '&:hover': {
+        color: '#ADD8E6',
+      },
+      
     }
   });
 
@@ -306,13 +326,22 @@ class Frame extends React.Component<FrameProps, FrameState> {
             <div id="search-box-portal" />
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+            
+            <a className={classes.anchor}>Funding</a> 
+              <a className={classes.anchor}>Help</a>
+              <a className={classes.anchor}>About us </a>
+              <a className={classes.anchor}>Sign Up</a>
+            
+            </div>
               <Button 
                 className={classes.loginButton}
                 onClick={() => this.handleLoginModal(!openLogin)} 
+                variant="outlined"
+                
               >
                 Login
               </Button>
-            </div>
+            
           </Toolbar>
         </AppBar>
         {openLogin && <LoginModal setOpen={this.handleLoginModal} />}
