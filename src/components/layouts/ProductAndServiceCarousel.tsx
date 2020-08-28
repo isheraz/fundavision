@@ -1,30 +1,27 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 import ProductAndService from './ProductAndService';
 import { PRODUCTS_INFO } from '../MockCardData/ProductAndServiceData';
-import { USER_PRODUCTS_INFO } from '../MockCardData/UserProductAndService';
 import "slick-carousel/slick/slick.css";
-  import "slick-carousel/slick/slick-theme.css";
-import Carousel from 'react-material-ui-carousel'
+import "slick-carousel/slick/slick-theme.css";
+import './custom.css'
 import Slider from "react-slick";
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
+import { Theme, createStyles, withStyles } from '@material-ui/core/styles';
+
+const styles = (theme: Theme) =>
   createStyles({
     root: {
-      width: 'fit-content',
-     
-    },
+      width: 'fit-content'
+    }
+  });
 
-   
-  }),
-);
+type ProductAndServiceCarouselProps = {
+  classes: any;
+}
 
-
-export default function ProductAndServiceCarousel() 
-{
-    const classes = useStyles();
-    const settings = {
+const ProductAndServiceCarousel = ({classes}: ProductAndServiceCarouselProps) =>
+{    const settings = {
         dots: false,
         infinite: true,
         speed: 500,
@@ -32,11 +29,9 @@ export default function ProductAndServiceCarousel()
         slidesToScroll: 3
       };
 
-
+      console.log(classes);
     return (
-
-
-<Slider {...settings}>
+      <Slider {...settings}>
     {
 
  PRODUCTS_INFO.map((item, i)=>{
@@ -55,3 +50,4 @@ export default function ProductAndServiceCarousel()
 
 
 }
+export default withStyles(styles)(ProductAndServiceCarousel);

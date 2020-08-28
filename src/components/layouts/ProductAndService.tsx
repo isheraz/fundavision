@@ -1,7 +1,16 @@
 import React from 'react';
-import { makeStyles,withStyles } from '@material-ui/core/styles';
-import {Card, CardHeader,CardActionArea,CardActions,CardContent,CardMedia,Button,Typography} from '@material-ui/core';
-import { TitleRounded } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
+import { 
+  Card, 
+  CardHeader, 
+  CardActionArea, 
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography
+} from '@material-ui/core';
+
 
 const useStyles = makeStyles({
   root: {
