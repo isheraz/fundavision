@@ -18,7 +18,7 @@ import FundaVisionLogo from '../../assets/logos/logo.png';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Link } from '@material-ui/core';
 // import { OrganizationType, RoleType } from 'lib/enums';
 // import SwitchToChrome from '../components/SwitchToChrome';
 
@@ -159,6 +159,7 @@ const styles = (theme: any) =>
     },
     sectionDesktop: {
       display: 'none',
+      
       [theme.breakpoints.up('sm')]: {
         display: 'flex'
       }
@@ -166,11 +167,11 @@ const styles = (theme: any) =>
     loginButton: {
       marginRight:'20px',
       borderRadius: '20px',
-      color:"black",
+      color:"#363636",
       border: '1px solid #C0C0C0',
     
       '&:hover': {
-        backgroundColor: '#4C33FF',
+        backgroundColor: '#0082D8',
       },
     },
     link: {
@@ -191,11 +192,13 @@ const styles = (theme: any) =>
     anchor:{
       textDecoration:'none',
       paddingRight:'24px',
-      color:'black',
+      color:"#363636",
       fontSize:'15px',
       fontWeight:'lighter',
+      fontFamily: 'Poppins-Regular',
+    
       '&:hover': {
-        color: '#ADD8E6',
+        color: '#0082D8',
       },
       
     }
