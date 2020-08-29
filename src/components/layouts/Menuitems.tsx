@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 'fit-content',
-      padding:'16px',
+      padding:'15px',
       display:'flex',
       border:`1px solid ${theme.palette.divider}`,
       borderLeft: '0 !important',

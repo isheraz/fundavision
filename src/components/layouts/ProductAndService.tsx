@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import './custom.css';
 import { 
   Card, 
   CardHeader, 
@@ -14,11 +15,21 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 222,
+    marginLeft:70,
+    marginTop:41,
+    
+   
   },
   media: {
-    height: 140,
+    height: 122,
   },
+
+  button:{
+    borderRadius: 26,
+    marginLeft: 31,
+  },
+
 });
 
  const ProductAndService=(props:any)=>{
@@ -46,7 +57,7 @@ const useStyles = makeStyles({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button className={classes.button} size="small" variant="outlined" color="primary" >
           See Packages
         </Button>
       </CardActions>

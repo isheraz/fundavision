@@ -25,13 +25,13 @@ const ProductAndServiceCarousel = ({classes}: ProductAndServiceCarouselProps) =>
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToShow: 4,
+        slidesToScroll: 4
       };
 
-      console.log(classes);
+     
     return (
-      <Slider {...settings}>
+      <Slider  {...settings}>
     {
 
  PRODUCTS_INFO.map((item, i)=>{
