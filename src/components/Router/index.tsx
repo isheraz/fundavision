@@ -27,20 +27,20 @@ const retry: any = (
   });
 };
 // const Reports = lazy(() => retry(() => import('./routes/')));
-const Home = lazy(() => retry(() => import('../../pages/home/')));
+const Home = lazy(() => retry(() => import('../../pages/home')));
 
 type RouterProps = {};
 
 const Router: React.FC<RouterProps> = () => {
   return (
     <ConnectedRouter history={history}>
-        <Suspense fallback={<LoadingState />}>
-            <Switch>
-              <WithFrame exact path="/" component={Home} />
-              
-              <Route exact path="/" render={() => Home} />
-            </Switch>
-          </Suspense>
+      <Suspense fallback={<LoadingState />}>
+        <Switch>
+          <WithFrame exact path="/" component={Home} />
+
+          <Route exact path="/" render={() => Home} />
+        </Switch>
+      </Suspense>
     </ConnectedRouter>
   );
 };

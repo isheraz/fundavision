@@ -71,12 +71,12 @@ const ImagePreviewModal = ({
           </IconButton>
         )}
         <div className={classes.modalScrollContainer as string}>
-          {/* // eslint-disable-next-line jsx-a11y/alt-text */}
           <img
             style={{ width: '100%' }}
             src={jpgURL}
             ref={img => {
               if (!img) return;
+              // eslint-disable-next-line no-param-reassign
               img.onload = () => {
                 setLoading(false);
               };

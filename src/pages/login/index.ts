@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import LoginModal from './login';
 
-
 const mapStateToProps = (state: any) => ({
   // orgContext: state.auth.orgContext,
   // authError: state.auth.error,

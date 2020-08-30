@@ -71,7 +71,7 @@ const EModal = ({
   return (
     <Modal
       id={id}
-      onBackdropClick={() => setOpen ? setOpen(false) : undefined }
+      onBackdropClick={() => (setOpen ? setOpen(false) : undefined)}
       open
     >
       <Grid className={classes.modalContent as string}>

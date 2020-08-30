@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router';
-import Frame from '../components/layouts/Frame';
+import Frame from './layouts/Frame';
 
 const WithFrame = (props: any) => {
   const { exact, path, component, hideFrame, noFramePadding } = props;
