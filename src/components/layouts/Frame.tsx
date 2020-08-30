@@ -1,20 +1,23 @@
-import React from 'react';
-import { createStyles, withStyles } from '@material-ui/core/styles';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, { useState, ReactElement } from 'react';
 import { push, Push } from 'connected-react-router';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
-import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { Button, Link } from '@material-ui/core';
+import { ExitToApp, AccountCircle, SearchRounded } from '@material-ui/icons';
+import {
+  AppBar,
+  Button,
+  Link,
+  InputBase,
+  Menu,
+  Toolbar,
+  MenuItem,
+  Typography,
+  CssBaseline
+} from '@material-ui/core';
+
 import FundaVisionLogo from '../../assets/logos/logo.png';
 import LoginModal from '../../pages/login';
+import HomeMenu from './Menuitems';
 
 const drawerWidth = 240;
 
@@ -118,7 +121,6 @@ const styles = (theme: any) =>
 
     inputInput: {
       paddingRight: '100px',
-      // vertical padding + font size from searchIcon
       paddingLeft: '20px',
       transition: theme.transitions.create('width'),
       width: '30ch',
@@ -166,156 +168,153 @@ const styles = (theme: any) =>
 
 type FrameProps = {
   classes: Record<string, string>;
+  children: ReactElement;
   userAuth?: any;
-  // organization?: ESnapshot<EOrganization>;
-  // user?: ESnapshot<EUser>;
   noFramePadding: boolean;
   location?: any;
-  // activeOrganization: ESnapshot<EOrganization>;
   push: Push;
 };
 
-type FrameState = {
-  settingsAnchorElt: Element | null | undefined;
-  openLogin: boolean;
-};
+const Frame = ({
+  classes,
+  userAuth,
+  children,
+  noFramePadding,
+  location,
+  push
+}: FrameProps) => {
+  const [settingsAnchorElt, setSettingsAnchor] = useState<Element | null>();
+  const [openLogin, setOpenlogin] = useState(false);
 
-class Frame extends React.Component<FrameProps, FrameState> {
-  constructor(props: FrameProps) {
-    super(props);
-    this.state = {
-      settingsAnchorElt: undefined,
-      openLogin: false
-    };
-  }
-
-  handleProfileMenuOpen = (event: React.MouseEvent) => {
-    this.setState({ settingsAnchorElt: event.currentTarget });
+  const handleProfileMenuOpen = (event: React.MouseEvent) => {
+    setSettingsAnchor(event.currentTarget);
   };
 
-  handleProfileMenuClose = () => {
-    this.setState({ settingsAnchorElt: null });
+  const handleProfileMenuClose = () => {
+    setSettingsAnchor(null);
   };
 
-  handleLoginModal = (loginState: boolean) => {
-    this.setState({ openLogin: loginState });
+  const handleLoginModal = (loginState: boolean) => {
+    setOpenlogin(loginState);
   };
 
-  render() {
-    const { classes, children, userAuth, noFramePadding, push } = this.props;
-    const { settingsAnchorElt, openLogin } = this.state;
-    const isProfileMenuOpen = Boolean(settingsAnchorElt);
+  const isProfileMenuOpen = Boolean(settingsAnchorElt);
 
-    const settingsMenu = (
-      <Menu
-        anchorEl={settingsAnchorElt}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isProfileMenuOpen}
-        onClose={this.handleProfileMenuClose}
-      >
-        {userAuth && (
-          <MenuItem
-            className={classes.link}
-            onClick={() => {
-              this.handleProfileMenuClose();
-              push('/settings/');
-            }}
-          >
-            <AccountCircle color="inherit" className={classes.settingsIcons} />
-            My Account
-          </MenuItem>
-        )}
-        {userAuth && (
-          <MenuItem
-            id="logout"
-            onClick={() => {
-              this.handleProfileMenuClose();
-              push('/logout');
-            }}
-          >
-            <ExitToAppIcon color="inherit" className={classes.settingsIcons} />
-            Logout
-          </MenuItem>
-        )}
-      </Menu>
-    );
+  const debounceHandleSearch = async () => {
+    console.log('debounce');
+  };
 
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar id="appbar" position="fixed" className={classes.appBar}>
-          <Toolbar disableGutters>
-            <Typography
-              variant="h5"
-              color="inherit"
-              noWrap
-              className={classes.title}
-            >
-              <img src={FundaVisionLogo} className={classes.logo} alt="logo" />
-            </Typography>
-
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search Buisness or Organization"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </div>
-
-            <div id="search-box-portal" />
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <Link className={classes.anchor} href="#">
-                Funding
-              </Link>
-              <Link className={classes.anchor} href="#">
-                Help
-              </Link>
-              <Link className={classes.anchor} href="#">
-                About us{' '}
-              </Link>
-              <Link className={classes.anchor} href="#">
-                Sign Up
-              </Link>
-            </div>
-            <Button
-              className={classes.loginButton}
-              onClick={() => this.handleLoginModal(!openLogin)}
-              variant="outlined"
-            >
-              Login
-            </Button>
-          </Toolbar>
-        </AppBar>
-        {openLogin && <LoginModal setOpen={this.handleLoginModal} />}
-        {settingsMenu}
-        <main
-          id="main"
-          className={
-            noFramePadding
-              ? classes.contentFixed
-              : `${classes.content} ${classes.contentPadding}`
-          }
+  const settingsMenu = () => (
+    <Menu
+      anchorEl={settingsAnchorElt}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isProfileMenuOpen}
+      onClose={handleProfileMenuClose}
+    >
+      {userAuth && (
+        <MenuItem
+          className={classes.link}
+          onClick={() => {
+            handleProfileMenuClose();
+            push('/settings/');
+          }}
         >
-          <div
-            id="drawerHeader"
-            className={
-              noFramePadding ? classes.drawerHeaderHidden : classes.drawerHeader
-            }
-          />
-          {children}
-        </main>
-      </div>
-    );
-  }
-}
+          <AccountCircle color="inherit" className={classes.settingsIcons} />
+          My Account
+        </MenuItem>
+      )}
+      {userAuth && (
+        <MenuItem
+          id="logout"
+          onClick={() => {
+            handleProfileMenuClose();
+            push('/logout');
+          }}
+        >
+          <ExitToApp color="inherit" className={classes.settingsIcons} />
+          Logout
+        </MenuItem>
+      )}
+    </Menu>
+  );
+
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar id="appbar" position="fixed" className={classes.appBar}>
+        <Toolbar disableGutters>
+          <Typography
+            variant="h5"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
+            <img src={FundaVisionLogo} className={classes.logo} alt="logo" />
+          </Typography>
+
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchRounded />
+            </div>
+            <InputBase
+              placeholder="Search Buisness or Organization"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              onClick={debounceHandleSearch}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+
+          <div id="search-box-portal" />
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <Link className={classes.anchor} href="#">
+              Funding
+            </Link>
+            <Link className={classes.anchor} href="#">
+              Help
+            </Link>
+            <Link className={classes.anchor} href="#">
+              About us{' '}
+            </Link>
+            <Link className={classes.anchor} href="#">
+              Sign Up
+            </Link>
+          </div>
+          <Button
+            className={classes.loginButton}
+            onClick={() => handleLoginModal(!openLogin)}
+            variant="outlined"
+          >
+            Login
+          </Button>
+        </Toolbar>
+        <HomeMenu />
+      </AppBar>
+      {openLogin && <LoginModal setOpen={handleLoginModal} />}
+      {settingsMenu}
+      <main
+        id="main"
+        className={
+          noFramePadding
+            ? classes.contentFixed
+            : `${classes.content} ${classes.contentPadding}`
+        }
+      >
+        <div
+          id="drawerHeader"
+          className={
+            noFramePadding ? classes.drawerHeaderHidden : classes.drawerHeader
+          }
+        />
+        {children}
+      </main>
+    </div>
+  );
+};
 export default connect(mapStateToProps, { push })(
   withStyles(styles, { withTheme: true })(Frame)
 );

@@ -9,35 +9,17 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       marginTop: '2%',
-      fontFamily: 'Poppins-Regular',
-      '&:hover': {
-        color: '#0082D8',
-        backgroundColor: 'transparent',
-        fontFamily: 'Poppins-Regular'
-      }
+      fontFamily: 'Poppins-Regular'
     }
   })
 );
-
-type HomeProps = {
-  title: string;
-};
-
-const Home = ({ title }: HomeProps) => {
-  const [hover, sethover] = useState(false);
+const Home = () => {
   const classes = useStyles();
 
   return (
     <>
-      <HomeMenu />
-      <Typography
-        align="center"
-        className={classes.root}
-        onMouseEnter={() => sethover(true)}
-        onMouseLeave={() => sethover(false)}
-      >
-        {' '}
-        {hover ? 'Home & Services....' : 'Home'}
+      <Typography align="center" className={classes.root}>
+        Products &amp; Services
       </Typography>
       <ProductAndServiceCarousel />
     </>
