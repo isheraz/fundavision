@@ -1,0 +1,50 @@
+.slick-arrow {
+  background:white;
+  
+  padding: 1px;
+  
+}
+
+.slick-next{
+
+  right: 3px;
+  width: 50px;
+  height: 47px;
+  border-radius: 16px;
+
+
+}
+
+ .slick-next:before {
+    font-family: 'slick';
+    font-size: 55px;
+    line-height: 1;
+    opacity: .75;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: -25px;
+  background-color:white;
+  width: 47px;
+  height: 74px;
+  
+}
+
+.slick-prev:before {
+  font-family: 'slick';
+  font-size: 47px;
+  line-height: 0;
+  opacity: .75;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.MuiTypography-h5 {
+  font-family: Poppins-Regular;
+  font-size: 25px;
+  color: #A4A5A4
+}

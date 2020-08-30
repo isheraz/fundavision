@@ -14,9 +14,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Menu from '@material-ui/core/Menu';
 import LoginModal from '../../pages/login';
-
+import FundaVisionLogo from '../../assets/logos/logo.png';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Link } from '@material-ui/core';
 // import { OrganizationType, RoleType } from 'lib/enums';
 // import SwitchToChrome from '../components/SwitchToChrome';
 
@@ -31,6 +33,11 @@ const mapStateToProps = () => ({
 
 const styles = (theme: any) =>
   createStyles({
+
+    logo: {
+      maxWidth: 160,
+    },
+
     root: {
       display: 'flex',
       height: '100vh',
@@ -110,7 +117,7 @@ const styles = (theme: any) =>
       padding: theme.spacing(3)
     },
     searchIcon: {
-      width: theme.spacing(9),
+      marginLeft:'83%',
       height: '100%',
       position: 'absolute',
       pointerEvents: 'none',
@@ -118,17 +125,55 @@ const styles = (theme: any) =>
       alignItems: 'center',
       justifyContent: 'center'
     },
+    search: {
+      position: 'relative',
+      borderRadius: '20px',
+      backgroundColor: 'white',
+      border: '2px solid #C0C0C0',
+      
+      '&:hover': {
+        backgroundColor: 'light-gray',
+      },
+      marginRight: theme.spacing(2),
+      marginLeft: 0,
+      width: '200%',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+      },
+    },
     inputRoot: {
       color: 'inherit',
       width: '100%'
     },
+
+    inputInput: {
+      paddingRight:'100px',
+      // vertical padding + font size from searchIcon
+      paddingLeft:'20px',
+      transition: theme.transitions.create('width'),
+      width: '30ch',
+      [theme.breakpoints.up('md')]: {
+        width: '30ch',
+      },
+    },
     sectionDesktop: {
       display: 'none',
+      
       [theme.breakpoints.up('sm')]: {
         display: 'flex'
       }
     },
-    loginButton: {},
+    loginButton: {
+      marginRight:'20px',
+      borderRadius: '20px',
+      color:"#363636",
+      border: '1px solid #C0C0C0',
+    
+      '&:hover': {
+        backgroundColor: '#0082D8',
+      },
+    },
     link: {
       textDecoration: 'none',
       color: theme.palette.text.primary
@@ -143,6 +188,19 @@ const styles = (theme: any) =>
     superBanner: {
       background: theme.palette.secondary.main,
       backgroundColor: theme.palette.secondary[400]
+    },
+    anchor:{
+      textDecoration:'none',
+      paddingRight:'24px',
+      color:"#363636",
+      fontSize:'15px',
+      fontWeight:'lighter',
+      fontFamily: 'Poppins-Regular',
+    
+      '&:hover': {
+        color: '#0082D8',
+      },
+      
     }
   });
 
@@ -251,19 +309,42 @@ class Frame extends React.Component<FrameProps, FrameState> {
               noWrap
               className={classes.title}
             >
-              Fundavision
+              <img src={FundaVisionLogo} className={classes.logo} alt='logo' />
             </Typography>
+
+            <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search Buisness or Organization"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
             
             <div id="search-box-portal" />
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+            
+            <a className={classes.anchor}>Funding</a> 
+              <a className={classes.anchor}>Help</a>
+              <a className={classes.anchor}>About us </a>
+              <a className={classes.anchor}>Sign Up</a>
+            
+            </div>
               <Button 
                 className={classes.loginButton}
                 onClick={() => this.handleLoginModal(!openLogin)} 
+                variant="outlined"
+                
               >
                 Login
               </Button>
-            </div>
+            
           </Toolbar>
         </AppBar>
         {openLogin && <LoginModal setOpen={this.handleLoginModal} />}
