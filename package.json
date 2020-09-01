@@ -12,15 +12,18 @@
     "@types/node": "^12.12.54",
     "@types/react": "^16.9.45",
     "@types/react-dom": "^16.9.8",
+    "@types/react-slick": "^0.23.4",
     "connected-react-router": "^6.8.0",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.5",
     "react-dom": "^16.13.1",
+    "react-material-ui-carousel": "^1.8.2",
     "react-redux": "^7.1.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-select": "^3.0.4",
+    "react-slick": "^0.27.10",
     "react-stripe-elements": "^3.0.0",
     "react-svg-pan-zoom": "^3.2.0",
     "react-test-renderer": "^16.8.2",
@@ -28,16 +31,28 @@
     "redux-saga": "^1.0.5",
     "redux-thunk": "^2.3.0",
     "reduxsauce": "^1.1.0",
-    "typescript": "^3.7.5"
+    "slick-carousel": "^1.8.1",
+    "typescript": "^3.7.5",
+    "eslint-plugin-react-hooks": "^2.3.0"
   },
   "scripts": {
     "start": "react-app-rewired --max_old_space_size=2048 start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/ --ext=js,jsx,ts,tsx --ignore-pattern node_modules/",
+    "lint:fix": "eslint src/ --fix=true --ext=js,jsx,ts,tsx --ignore-pattern node_modules/"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "lint-staged": {
+    "src/**/*.{js}": [
+      "eslint --fix --max-warnings=0",
+      "prettier --write",
+      "git add",
+      "npm run test:nowatch"
+    ]
   },
   "browserslist": {
     "production": [
@@ -53,6 +68,27 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.9",
-    "@types/react-router": "^5.1.8"
+    "@types/react-router": "^5.1.8",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-react-app": "^3.0.6",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-flowtype": "^4.2.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-app": "^6.1.0",
+    "prettier": "^1.18.2",
+    "husky": "^3.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix && git add ."
+    }
+  },
+  "resolutions": {
+    "jss": "10.0.0"
   }
 }

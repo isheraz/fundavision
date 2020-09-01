@@ -50,7 +50,7 @@ const styles = (theme: Theme) =>
       width: '75%',
       textAlign: 'center',
       fontWeight: 400,
-      fontFamily: `'Poppins', sans-serif`,
+      fontFamily: `'Poppins', sans-serif`
     },
     closeIcon: {
       position: 'absolute',
@@ -79,7 +79,8 @@ const FreeformEModal = ({
   id?: string;
 }) => {
   return (
-    <Modal id={id} 
+    <Modal
+      id={id}
       onBackdropClick={() => (setOpen ? setOpen(false) : null)}
       open
     >

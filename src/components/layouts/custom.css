@@ -1,0 +1,88 @@
+/* .slick-arrow {
+  background:white;
+  
+  padding: 1px;
+  
+}
+
+.slick-next{
+
+  right: 3px;
+  width: 50px;
+  height: 47px;
+  border-radius: 16px;
+
+
+}
+
+ .slick-next:before {
+    font-family: 'slick';
+    font-size: 55px;
+    line-height: 1;
+    opacity: .75;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: -25px;
+  background-color:white;
+  width: 47px;
+  height: 74px;
+  
+}
+
+.slick-prev:before {
+  font-family: 'slick';
+  font-size: 47px;
+  line-height: 0;
+  opacity: .75;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+
+
+.MuiCardHeader-root {
+  display: flex;
+  padding: 15px;
+  align-items: center;
+}
+
+.MuiTypography-h5 {
+  font-family: Poppins-Regular;
+  font-size: 16px;
+  color: #A4A5A4
+}
+
+.MuiTypography-body2 {
+  font-size: 0.8rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+
+
+
+/* Card Description */
+
+.MuiCardContent-root {
+  padding: 14px;
+
+}
+/* $450-550 */
+.MuiTypography-body1 {
+  font-size: 0.9rem;
+  padding-right:26px;
+
+
+}
+
+.MuiCardHeader-root {
+  display: flex;
+  padding: 0;
+  align-items: center;
+}

@@ -1,39 +1,30 @@
-import { createStyles, withStyles, fade } from '@material-ui/core/styles';
+
+import { createStyles, withStyles, fade} from '@material-ui/core/styles';
 import React, { useState } from 'react';
 import * as Icons from '@material-ui/icons';
+
+
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import SettingsIcon from '@material-ui/icons/Settings';
-import HelpIcon from '@material-ui/icons/Help';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import { push, Push } from 'connected-react-router';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Menu from '@material-ui/core/Menu';
-import LoginModal from '../../pages/login';
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-import Link from '@material-ui/core/Link'
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 import FrameClasses from './Frame.module.css'
-
-
-import FundaVisionLogo from '../../assets/logo/logo.png';
-
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
-// import { OrganizationType, RoleType } from 'lib/enums';
-// import SwitchToChrome from '../components/SwitchToChrome';
-
-// import ActiveOrganizationSelect from './ActiveOrganizationSelect';
-// import NotificationDropdown from '../components/NotificationDropdown';
-// import { ESnapshot, EUser, EOrganization } from '../lib/types';
+import { Button, Link } from '@material-ui/core';
+import FundaVisionLogo from '../../assets/logos/logo.png';
+import LoginModal from '../../pages/login';
 
 const drawerWidth = 240;
+
 
 const mapStateToProps = () => ({
 
@@ -43,25 +34,14 @@ const mapStateToProps = () => ({
 
 const styles = (theme: any) =>
   createStyles({
-
-    
-    logo :{
-    maxWidth:160,
+    logo: {
+      maxWidth: 160
     },
-  
 
     root: {
       display: 'flex',
       height: '100vh',
       flexDirection: 'column'
-    },
-    tcItem: {
-      cursor: 'pointer'
-    },
-    footer: {
-      marginBottom: theme.spacing(3),
-      textAlign: 'center',
-      color: '#616161'
     },
     grow: {
       flexGrow: 1
@@ -75,10 +55,6 @@ const styles = (theme: any) =>
       backgroundColor: 'white',
       color: theme.palette.grey[700]
     },
-    menuButton: {
-      marginLeft: 12,
-      marginRight: 20
-    },
     title: {
       display: 'none',
       [theme.breakpoints.up('sm')]: {
@@ -89,15 +65,9 @@ const styles = (theme: any) =>
       textDecoration: 'none',
       cursor: 'pointer'
     },
-    hide: {
-      display: 'none'
-    },
     drawer: {
       width: drawerWidth,
       flexShrink: 0
-    },
-    drawerPaper: {
-      width: drawerWidth
     },
     drawerHeader: {
       display: 'flex',
@@ -128,50 +98,9 @@ const styles = (theme: any) =>
     contentPadding: {
       padding: theme.spacing(3)
     },
-   
-    inputRoot: {
-      color: 'inherit',
-      width: '100%'
-    },
-    sectionDesktop: {
-      display: 'none',
-      marginRight:theme.spacing(2),
-      
-      [theme.breakpoints.up('sm')]: {
-        display: 'flex'
-      }
-    },
-
-    loginButton: {
-      marginRight:'20px',
-      borderRadius: '20px',
-      color:"black",
-      border: '1px solid #C0C0C0',
-    
-      '&:hover': {
-        backgroundColor: '#4C33FF',
-      },
-    },
-
-    link: {
-      textDecoration: 'none',
-      color: theme.palette.text.primary
-    },
-    iconLink: {
-      textDecoration: 'none',
-     
-      color: 'inherit'
-    },
-    settingsIcons: {
-      marginRight: theme.spacing(1)
-    },
-    superBanner: {
-      background: theme.palette.secondary.main,
-      backgroundColor: theme.palette.secondary[400]
-    },
 
     searchIcon: {
-      marginLeft:'83%',
+      marginLeft: '83%',
       height: '100%',
       position: 'absolute',
       pointerEvents: 'none',
@@ -179,46 +108,77 @@ const styles = (theme: any) =>
       alignItems: 'center',
       justifyContent: 'center'
     },
-
     search: {
       position: 'relative',
       borderRadius: '20px',
       backgroundColor: 'white',
       border: '2px solid #C0C0C0',
-      
+
       '&:hover': {
-        backgroundColor: 'light-gray',
+        backgroundColor: 'light-gray'
       },
       marginRight: theme.spacing(2),
       marginLeft: 0,
-      width: '100%',
+      width: '200%',
       [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(3),
-        width: 'auto',
-      },
+        width: 'auto'
+      }
+    },
+
+    inputRoot: {
+      color: 'inherit',
+      width: '100%'
     },
 
     inputInput: {
-      paddingRight:'100px',
+      paddingRight: '100px',
       // vertical padding + font size from searchIcon
-      paddingLeft:'20px',
+      paddingLeft: '20px',
       transition: theme.transitions.create('width'),
       width: '30ch',
       [theme.breakpoints.up('md')]: {
-        width: '30ch',
-      },
+        width: '30ch'
+      }
+    },
+    sectionDesktop: {
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'flex'
+      }
     },
 
-    anchor:{
-      textDecoration:'none',
-      paddingRight:'24px',
-      color:'black',
-      fontSize:'15px',
-      fontWeight:'lighter',
+    loginButton: {
+      marginRight: '20px',
+      borderRadius: '20px',
+      color: '#363636',
+      border: '1px solid #C0C0C0',
+
       '&:hover': {
-        color: '#ADD8E6',
-      },
-      
+        backgroundColor: '#0082D8'
+      }
+    },
+
+    link: {
+      textDecoration: 'none',
+      color: theme.palette.text.primary
+    },
+
+    settingsIcons: {
+      marginRight: theme.spacing(1)
+    },
+    anchor: {
+      textDecoration: 'none',
+      paddingRight: '24px',
+      color: '#363636',
+      fontSize: '15px',
+      fontWeight: 'lighter',
+      fontFamily: 'Poppins-Regular',
+
+      '&:hover': {
+        color: '#0082D8'
+      }
+
     }
 
  
@@ -237,8 +197,7 @@ type FrameProps = {
 
 type FrameState = {
   settingsAnchorElt: Element | null | undefined;
-  helpAnchorElt: Element | null | undefined;
-  openLogin: Boolean;
+  openLogin: boolean;
 };
 
 class Frame extends React.Component<FrameProps, FrameState> {
@@ -246,8 +205,7 @@ class Frame extends React.Component<FrameProps, FrameState> {
     super(props);
     this.state = {
       settingsAnchorElt: undefined,
-      helpAnchorElt: undefined,
-      openLogin: true
+      openLogin: false
     };
   }
 
@@ -259,28 +217,13 @@ class Frame extends React.Component<FrameProps, FrameState> {
     this.setState({ settingsAnchorElt: null });
   };
 
-  handleHelpMenuOpen = (event: React.MouseEvent) => {
-    this.setState({ helpAnchorElt: event.currentTarget });
-  };
-
-  handleHelpMenuClose = () => {
-    this.setState({ helpAnchorElt: null });
-  };
-
   handleLoginModal = (loginState: boolean) => {
-    this.setState({openLogin: loginState});
+    this.setState({ openLogin: loginState });
   };
 
   render() {
-    const {
-      classes,
-      children,
-      userAuth,
-     
-      noFramePadding,
-      push,
-    } = this.props;
-    const { settingsAnchorElt, helpAnchorElt, openLogin } = this.state;
+    const { classes, children, userAuth, noFramePadding, push } = this.props;
+    const { settingsAnchorElt, openLogin } = this.state;
     const isProfileMenuOpen = Boolean(settingsAnchorElt);
 
     const settingsMenu = (
@@ -329,47 +272,48 @@ class Frame extends React.Component<FrameProps, FrameState> {
               noWrap
               className={classes.title}
             >
-           {/* App Bar Logo */}
-              <img src={FundaVisionLogo}  className={classes.logo} alt='Logo' /> 
-             
-     </Typography>
 
-     <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+              <img src={FundaVisionLogo} className={classes.logo} alt="logo" />
+            </Typography>
+
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search Buisness or Organization"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
             </div>
-            <InputBase
-              placeholder="Search Buisness or Organizations"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-            
+
             <div id="search-box-portal" />
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-           
-               
-              <a className={classes.anchor}>Funding</a> 
-              <a className={classes.anchor}>Help</a>
-              <a className={classes.anchor}>About us </a>
-              <a className={classes.anchor}>Sign Up</a>
-
-            
+              <Link className={classes.anchor} href="#">
+                Funding
+              </Link>
+              <Link className={classes.anchor} href="#">
+                Help
+              </Link>
+              <Link className={classes.anchor} href="#">
+                About us{' '}
+              </Link>
+              <Link className={classes.anchor} href="#">
+                Sign Up
+              </Link>
             </div>
-              <Button 
-                className={classes.loginButton}
-                onClick={() => this.handleLoginModal(!openLogin)} 
-              
-                variant="outlined" 
+            <Button
+              className={classes.loginButton}
+              onClick={() => this.handleLoginModal(!openLogin)}
+              variant="outlined"
+            >
+              Login
+            </Button>
 
-              >
-                Login
-              </Button>
-            
           </Toolbar>
         </AppBar>
         {openLogin && <LoginModal setOpen={this.handleLoginModal} />}

@@ -4,7 +4,7 @@ import { Grid, CircularProgress, Typography, Theme } from '@material-ui/core';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import * as Sentry from '@sentry/browser';
-
+// for checking
 import ErrorActions from '../../redux/errors';
 // import { ENV, PROD, DEMO } from '../constants';
 

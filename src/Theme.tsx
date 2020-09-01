@@ -10,9 +10,7 @@ type ThemeProps = {
   children: ReactNode;
 };
 
-const Theme: React.FC<ThemeProps> = ({
-  children
-}) => {
+const Theme: React.FC<ThemeProps> = ({ children }) => {
   const createTheme = () => {
     const defaultTheme = {
       typography: {
