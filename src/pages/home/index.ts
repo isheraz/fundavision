@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
+import { bindActionCreators } from 'redux';
+
+import LandingActions from '../../redux/home';
 import Home from './home';
 
 const mapStateToProps = (state: any) => ({
-  // orgContext: state.auth.orgContext,
-  // authError: state.auth.error,
-  // userAuth: state.auth.userAuth
+  pssObjects: state.pss.pssObject
 });
 const mapDispatchToProps = (dispatch: any) => ({
-  // authActions: bindActionCreators(AuthActions, dispatch),
+  landingActions: bindActionCreators(LandingActions, dispatch),
   push: (path: any) => dispatch(push(path))
 });
 

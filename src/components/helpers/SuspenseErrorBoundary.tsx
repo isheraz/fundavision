@@ -1,9 +1,7 @@
 import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
-// import * as Sentry from '@sentry/browser';
 
 import { connect } from 'react-redux';
-// import { ENV, PROD, DEMO } from '../constants';
 
 type BoundaryProps = {
   error: string;
@@ -25,10 +23,6 @@ class SuspenseErrorBoundary extends React.Component<
   }
 
   static getDerivedStateFromError(error: Error) {
-    // if (ENV === DEMO || ENV === PROD) {
-    //   Sentry.captureException(error);
-    // }
-
     return {
       hasError: true
     };

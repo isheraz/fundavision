@@ -1,4 +1,4 @@
-export type UserProductAndService = {
+export type User = {
   name: string;
   image: string;
   rating: string;

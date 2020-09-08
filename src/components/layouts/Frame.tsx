@@ -2,12 +2,11 @@ import React, { useState, ReactElement } from 'react';
 import { push, Push } from 'connected-react-router';
 import { createStyles, withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { ExitToApp, AccountCircle, SearchRounded } from '@material-ui/icons';
+import { ExitToApp, AccountCircle } from '@material-ui/icons';
 import {
   AppBar,
   Button,
   Link,
-  InputBase,
   Menu,
   Toolbar,
   MenuItem,
@@ -18,6 +17,7 @@ import {
 import FundaVisionLogo from '../../assets/logos/logo.png';
 import LoginModal from '../../pages/login';
 import HomeMenu from './Menuitems';
+import FSearchBar from '../FSearchBar/index';
 
 const drawerWidth = 240;
 
@@ -64,7 +64,10 @@ const styles = (theme: any) =>
       alignItems: 'center',
       padding: '0 8px',
       ...theme.mixins.toolbar,
-      justifyContent: 'flex-end'
+      justifyContent: 'flex-end',
+      [theme.breakpoints.up('sm')]: {
+        minHeight: '130px'
+      }
     },
     drawerHeaderHidden: {
       display: 'none'
@@ -88,37 +91,10 @@ const styles = (theme: any) =>
     contentPadding: {
       padding: theme.spacing(3)
     },
-    searchIcon: {
-      marginLeft: '83%',
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    search: {
-      position: 'relative',
-      borderRadius: '20px',
-      backgroundColor: 'white',
-      border: '2px solid #C0C0C0',
-
-      '&:hover': {
-        backgroundColor: 'light-gray'
-      },
-      marginRight: theme.spacing(2),
-      marginLeft: 0,
-      width: '200%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto'
-      }
-    },
     inputRoot: {
       color: 'inherit',
       width: '100%'
     },
-
     inputInput: {
       paddingRight: '100px',
       paddingLeft: '20px',
@@ -130,7 +106,6 @@ const styles = (theme: any) =>
     },
     sectionDesktop: {
       display: 'none',
-
       [theme.breakpoints.up('sm')]: {
         display: 'flex'
       }
@@ -186,10 +161,6 @@ const Frame = ({
   const [settingsAnchorElt, setSettingsAnchor] = useState<Element | null>();
   const [openLogin, setOpenlogin] = useState(false);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent) => {
-    setSettingsAnchor(event.currentTarget);
-  };
-
   const handleProfileMenuClose = () => {
     setSettingsAnchor(null);
   };
@@ -200,44 +171,42 @@ const Frame = ({
 
   const isProfileMenuOpen = Boolean(settingsAnchorElt);
 
-  const debounceHandleSearch = async () => {
-    console.log('debounce');
+  const SettingsMenu = () => {
+    return (
+      <Menu
+        anchorEl={settingsAnchorElt}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isProfileMenuOpen}
+        onClose={handleProfileMenuClose}
+      >
+        {userAuth && (
+          <MenuItem
+            className={classes.link}
+            onClick={() => {
+              handleProfileMenuClose();
+              push('/settings/');
+            }}
+          >
+            <AccountCircle color="inherit" className={classes.settingsIcons} />
+            My Account
+          </MenuItem>
+        )}
+        {userAuth && (
+          <MenuItem
+            id="logout"
+            onClick={() => {
+              handleProfileMenuClose();
+              push('/logout');
+            }}
+          >
+            <ExitToApp color="inherit" className={classes.settingsIcons} />
+            Logout
+          </MenuItem>
+        )}
+      </Menu>
+    );
   };
-
-  const settingsMenu = () => (
-    <Menu
-      anchorEl={settingsAnchorElt}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isProfileMenuOpen}
-      onClose={handleProfileMenuClose}
-    >
-      {userAuth && (
-        <MenuItem
-          className={classes.link}
-          onClick={() => {
-            handleProfileMenuClose();
-            push('/settings/');
-          }}
-        >
-          <AccountCircle color="inherit" className={classes.settingsIcons} />
-          My Account
-        </MenuItem>
-      )}
-      {userAuth && (
-        <MenuItem
-          id="logout"
-          onClick={() => {
-            handleProfileMenuClose();
-            push('/logout');
-          }}
-        >
-          <ExitToApp color="inherit" className={classes.settingsIcons} />
-          Logout
-        </MenuItem>
-      )}
-    </Menu>
-  );
 
   return (
     <div className={classes.root}>
@@ -254,18 +223,7 @@ const Frame = ({
           </Typography>
 
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchRounded />
-            </div>
-            <InputBase
-              placeholder="Search Buisness or Organization"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              onClick={debounceHandleSearch}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            <FSearchBar />
           </div>
 
           <div id="search-box-portal" />
@@ -295,7 +253,7 @@ const Frame = ({
         <HomeMenu />
       </AppBar>
       {openLogin && <LoginModal setOpen={handleLoginModal} />}
-      {settingsMenu}
+      <SettingsMenu />
       <main
         id="main"
         className={

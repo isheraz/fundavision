@@ -5,23 +5,20 @@ import { MenuItem, Divider, Grid } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: 'fit-content',
       padding: '15px',
+      textAlign: 'center',
       display: 'flex',
       border: `1px solid ${theme.palette.divider}`,
       borderLeft: '0 !important',
       borderRight: '0 !important',
       color: '#A4A5A4',
-
       '& hr': {
         margin: theme.spacing(0, 2)
       }
     },
-
     menuItem: {
-      fontSize: '15px',
+      fontSize: '14px',
       fontFamily: 'Poppins-Regular',
-
       '&:hover': {
         color: '#ADD8E6',
         backgroundColor: 'transparent'
@@ -35,7 +32,7 @@ export default function Menuitems() {
 
   return (
     <Grid container alignItems="center" className={classes.root}>
-      <MenuItem className={classes.menuItem}>Graphic & Design </MenuItem>
+      <MenuItem className={classes.menuItem}>Graphic &amp; Design </MenuItem>
 
       <Divider orientation="vertical" flexItem />
 
@@ -55,7 +52,7 @@ export default function Menuitems() {
 
       <Divider orientation="vertical" flexItem />
 
-      <MenuItem className={classes.menuItem}>Music & Audio</MenuItem>
+      <MenuItem className={classes.menuItem}>Music &amp; Audio</MenuItem>
 
       <Divider orientation="vertical" flexItem />
 

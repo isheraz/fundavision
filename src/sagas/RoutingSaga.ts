@@ -1,12 +1,7 @@
-import { call, take, select, put, takeLatest } from 'redux-saga/effects';
-
-import { push, LOCATION_CHANGE } from 'connected-react-router';
-
-function* getLandingPage() {}
+import { takeLatest } from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 export function* getRedirect() {}
-
-function* checkNeedToRedirect() {}
 
 function* redirect() {}
 

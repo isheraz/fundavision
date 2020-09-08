@@ -43,14 +43,10 @@ const LoadingState: React.FC<LoadingStateProps> = ({
       errorActions.setError(ERROR_TEXT);
 
       console.error(ERROR_TEXT);
-
-      // if (ENV === DEMO || ENV === PROD) {
-      //   Sentry.captureException(ERROR_TEXT);
-      // }
     }, timeout * 1000);
 
     return () => clearTimeout(timer);
-  }, []);
+  });
 
   return (
     <Grid
