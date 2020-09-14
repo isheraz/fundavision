@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Card,
-  CardActionArea,
   CardMedia,
   CardContent,
   Typography,
@@ -19,10 +18,36 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       fontFamily: 'Poppins-Regular',
       maxWidth: 230,
-      borderRadius: '10px'
+      borderRadius: '10px',
+      position: 'relative',
+      marginBottom: 10
+    },
+    title: {
+      color: '#eaeaea',
+      position: 'absolute',
+      top: 10,
+      fontSize: 15
     },
     media: {
       height: 250
+    },
+    cardContent: { paddingBottom: 0 },
+    description: {
+      fontSize: 12,
+      textAlign: 'center',
+      marginBottom: 10
+    },
+    price: {
+      textAlign: 'center'
+    },
+    packagesButton: {
+      margin: '0 auto 10px',
+      border: `1px solid ${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
+      borderRadius: 30,
+      fontSize: 14,
+      padding: '10px',
+      textTransform: 'capitalize'
     }
   })
 );
@@ -36,28 +61,41 @@ const PSSCard: React.FC<PSSCard> = ({ pss, user }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://picsum.photos/200/300"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia
+        className={classes.media}
+        image="https://picsum.photos/200/300"
+        title="Contemplative Reptile"
+      />
+      <CardContent className={classes.cardContent}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          className={classes.title}
+        >
+          {pss.title}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          className={classes.description}
+        >
+          {pss.description.substr(0, 90)}...
+        </Typography>
+        <Typography
+          variant="h6"
+          className={classes.price}
+        >{`$${pss.startingPrice} - ${pss.endingPrice}`}</Typography>
+      </CardContent>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+        <Button
+          size="medium"
+          color="default"
+          variant="outlined"
+          className={classes.packagesButton}
+        >
+          Packages
         </Button>
       </CardActions>
     </Card>

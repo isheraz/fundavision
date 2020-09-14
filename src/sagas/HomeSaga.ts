@@ -7,15 +7,17 @@ const r = (characters: number) =>
     .toString(36)
     .substring(characters);
 
-const rpss = {
-  title: r(4),
-  description: r(20),
-  image: 'https://picsum.photos/200/300',
-  startingPrice: 200,
-  endingPrice: 120
+const rpss = () => {
+  return {
+    title: r(4),
+    description: `Curae diam ornare aenean nam inceptos placerat nec faucibus, convallis lectus erat accumsan nascetur parturient dignissim pharetra, lobortis odio sapien id porta rutrum fringilla. Facilisi tellus sagittis sociosqu facilisis nisl suscipit integer interdum luctus volutpat, aenean tristique erat urna litora magnis dis id quam nisi nulla, vitae nascetur aliquet sapien venenatis ac velit risus ultrices. Porta habitasse mi malesuada placerat et duis`,
+    image: 'https://picsum.photos/200/300',
+    startingPrice: 200,
+    endingPrice: 120
+  };
 };
 
-const pssObject: Array<PSS> = Array.from({ length: 20 }, () => rpss);
+const pssObject: Array<PSS> = Array.from({ length: 20 }, rpss);
 function* hydrate() {
   yield put(LandingAction.hydrateContent(pssObject));
 }
