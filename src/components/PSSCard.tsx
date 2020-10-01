@@ -10,6 +10,7 @@ import {
   Theme,
   createStyles
 } from '@material-ui/core';
+import { Grade } from '@material-ui/icons';
 
 import { PSS, User } from '../library/types/index';
 
@@ -48,24 +49,65 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 14,
       padding: '10px',
       textTransform: 'capitalize'
+    },
+    userImage: {
+      width: 40,
+      height: 40,
+      borderRadius: '50%',
+      position: 'absolute',
+      top: 15,
+      right: 15,
+      backgroundSize: 120
+    },
+    rating: {
+      color: '#fbb725',
+      position: 'absolute',
+      top: -10,
+      right: -10,
+      fontWeight: 'bold'
+    },
+    ratingStar: {
+      fontSize: 16,
+      verticalAlign: 'text-top',
+      marginRight: -5
     }
   })
 );
 
 type PSSCard = {
   pss: PSS;
-  user?: User;
 };
 
-const PSSCard: React.FC<PSSCard> = ({ pss, user }) => {
+type RatingProps = {
+  user: User;
+};
+
+const Rating: React.FC<RatingProps> = ({ user }) => {
   const classes = useStyles();
+  return (
+    <CardMedia
+      className={classes.userImage}
+      image={user.image}
+      title={user.name}
+    >
+      <Typography className={classes.rating}>
+        <Grade className={classes.ratingStar} /> {user.rating}
+      </Typography>
+    </CardMedia>
+  );
+};
+
+const PSSCard: React.FC<PSSCard> = ({ pss }) => {
+  const classes = useStyles();
+  const user = pss.user && pss.user;
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image="https://picsum.photos/200/300"
-        title="Contemplative Reptile"
+        image={pss.image}
+        title={pss.title}
       />
+      {user && <Rating user={user} />}
       <CardContent className={classes.cardContent}>
         <Typography
           gutterBottom

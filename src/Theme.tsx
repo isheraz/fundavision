@@ -29,6 +29,10 @@ const Theme: React.FC<ThemeProps> = ({ children }) => {
           fontWeight: 200
         }
       },
+      h3: {
+        fontSize: 20,
+        fontWeight: 600
+      },
       palette: {
         primary: defaultPrimary,
         secondary: amber,
@@ -40,6 +44,19 @@ const Theme: React.FC<ThemeProps> = ({ children }) => {
           scrollFormInteractiveElt: 'rgb(218, 218, 218)',
           scrollFormInteractiveEltHov: 'rgb(190, 190, 190)',
           buttonDark: '#dadada'
+        },
+        yellow: {
+          primary: '#FBB725'
+        },
+        blue: {
+          primary: '#1B54B5'
+        },
+        green: {
+          primary: '#009A49',
+          secondary: '#02A9BC'
+        },
+        red: {
+          primary: '#CC0303'
         },
         tertiary: {
           main: '#e24f21',

@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Container,
   Typography,
   makeStyles,
   Theme,
-  createStyles,
-  Grid
+  createStyles
 } from '@material-ui/core';
 import Slider from 'react-slick';
 
@@ -31,10 +30,6 @@ type PSSCarouselProps = {
 
 const PSSCarousel: React.FC<PSSCarouselProps> = ({ pssObjects }) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    console.log(pssObjects.length);
-  }, [pssObjects]);
 
   const settings = {
     dots: false,
